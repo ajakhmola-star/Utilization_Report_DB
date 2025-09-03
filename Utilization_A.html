@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DB_Ops Utilization Report</title>
+    <style>
+        /* CSS styling is the same as the previous example. */
+        /* You would put this in a styles.css file or directly in the <style> tag */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        .report-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .report-header {
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .report-header h1 {
+            color: #004d40;
+            /* Dark Teal */
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .report-header p {
+            font-size: 0.9em;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .report-introduction {
+            margin-bottom: 30px;
+            font-size: 1.05em;
+            color: #555;
+            background-color: #e8f5e9;
+            /* Light green background */
+            padding: 15px;
+            border-left: 5px solid #4caf50;
+            /* Green border */
+            border-radius: 4px;
+        }
+
+        .report-section {
+            margin-bottom: 40px;
+        }
+
+        .report-section h2 {
+            color: #00796b;
+            /* Medium Teal */
+            font-size: 1.8em;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background-color: #f0fdf4;
+            /* Very light green */
+            border: 1px solid #a5d6a7;
+            /* Light green border */
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .metric-card h3 {
+            color: #2e7d32;
+            /* Dark green */
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .metric-card p {
+            font-size: 2em;
+            font-weight: bold;
+            color: #4caf50;
+            /* Green */
+            margin: 0;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            /* Enables horizontal scrolling for small screens */
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .data-table th {
+            background-color: #e0f2f1;
+            /* Light cyan background */
+            color: #004d40;
+            /* Dark Teal */
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        .data-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .data-table tbody tr:hover {
+            background-color: #eef7f6;
+            cursor: pointer;
+        }
+
+        .report-section ul {
+            list-style: disc inside;
+            padding-left: 20px;
+            color: #555;
+        }
+
+        .report-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .report-footer {
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 20px;
+            margin-top: 40px;
+            font-size: 0.85em;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="report-container">
+        <header class="report-header">
+            <h1>DB_Ops Performers: Utilization Metrics Report</h1>
+            <p>Generated on: <span>September 03, 2025</span></p>
+            <p>Period: <span> August - 2025 </span></p>
+        </header>
+
+        <section class="report-introduction">
+            <p>We're thrilled to announce the top performers for their incredible utilization rates! It's amazing to
+                see our list of high achievers again grow from <span
+                    style="color: blueviolet; text-decoration: solid;">9 to 22</span>
+                team members. Please join us in celebrating their
+                outstanding accomplishments. Let's all be inspired by their dedication and learn from their
+                success. Please congratulate them for their outstanding achievements and let's all learn from their
+                experience.</p>
+        </section>
+
+        <!-- <section class="report-section">
+            <h2>Overview</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>DB_Ops Average Utilization Rate</h3>
+                    <p>65%</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Top Utilization Rate</h3>
+                    <p>89%</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Lowest Utilization Score</h3>
+                    <p>46%</p>
+                </div>
+            </div>
+        </section> -->
+
+        <section class="report-section">
+            <h2>High Performers Details</h2>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th scope="col"
+                                class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                #
+                            </th>
+                            <th scope="col"
+                                class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Profile
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Employee Name
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Site
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Rohit Kumar.jpg" width="65" alt="Rahul Kumar" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Rahul Kumar</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Sheeja Varghese.jpg" width="65" alt="Aastha Gulati" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Sheeja Varghese</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Harish Kumar.jpg" width="65" alt="Harish Kumar" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Harish Kumar</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">4</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Smile.jpg" width="65" alt="Smile Ahuja" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Smile Ahuja</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">5</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Rajat Raj.jpg" width="65" alt="Rajat Raj" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Rajat Raj</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">6</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Garima Verma.jpg" width="65" alt="Garima Verma" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Garima Verma</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">7</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Mansi.jpg" width="65" alt="Mansi" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Mansi</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Hyderabad</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">8</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Abhinav Hazarika.jpg" width="65" alt="Abhinav Hazarika" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Abhinav Hazarika</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">9</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Nikhil.jpg" width="65" alt="Nikhil" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Nikhil Sulke</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">10</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Shreyansh.jpg" width="65" alt="Shreyansh Peter" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Shreyansh Peter</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">11</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Shivangi.jpg" width="65" alt="Shivangi Awasthi" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Shivangi Awasthi</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">12</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Arbab Khan.jpg" width="65" alt="Arbab Khan" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Arbab Khan</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">13</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Pardeep Kumar.jpg" width="65" alt="Pardeep Kumar" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Pardeep Kumar</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">14</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Pooja Verma.jpg" width="65" alt="Pooja Verma" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Pooja Verma</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">15</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Anu Kamboj.jpg" width="65" alt="Anu Kamboj" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Anu Kamboj</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">16</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Sheetal.jpg" width="65" alt="Sheetal Bijalwan" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Sheetal Bijalwan</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">17</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Birendra.jpg" width="65" alt="Birendra" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Birendra Yadav</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">18</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Saraswathi.jpg" width="65" alt="Saraswathi" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Saraswathi</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Hyderabad</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">19</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Ankit Jha.jpg" width="65" alt="Ankit" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Ankit Jha</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">20</td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <img src="Rahul Batra.jpg" width="65" alt="Rahul" class="employee-photo"
+                                    onerror="this.src='https://placehold.co/60x60/CBD5E1/4A5568?text=Error'; this.alt='Error loading photo'">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Rahul Batra</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                <span class="status-badge status-good">Gurgaon</span>
+                            </td>
+                        </tr>
+
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- <section class="report-section">
+            <h2>Recommendations & Insights</h2>
+            <ul>
+                <li>Consider recognizing and rewarding these high performers to boost morale and encourage continued
+                    excellence.</li>
+                <li>Analyze the strategies and workflows of top performers to identify best practices that can be
+                    replicated across other teams.</li>
+                <li>Ensure high performers are not over-utilized, which could lead to burnout. Monitor workload and
+                    well-being.</li>
+                <li>Provide opportunities for skill development and leadership roles to retain top talent.</li>
+            </ul>
+        </section> -->
+
+        <footer class="report-footer">
+            <p>&copy; 2025 Google Operations Center. All rights reserved.</p>
+            <p>Confidential Report. Do not distribute without permission.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
